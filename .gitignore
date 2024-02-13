@@ -1,0 +1,7 @@
+Jupyters/*
+env_genbot/*
+requirements.txt
+build/*
+genbot.egg-info/*
+.DS_Store
+genbot/__pycache__/*
