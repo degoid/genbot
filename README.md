@@ -38,7 +38,7 @@ genbot = Genbot(genbot_name="MyGenbot", openai_key="your_openai_api_key", model=
 
 # Load Swagger functions and database configuration
 genbot.load_swagger_functions(url="your_swagger_url", swagger_json=your_swagger_json)
-genbot.load_database(user="db_user", pwd="db_password", ip="db_ip", table="db_table", db_type="db_type")
+genbot.load_database(user="db_user", pwd="db_password", ip="db_ip", table="db_table", db_type="db_type", client_encoding='optional_your_client_encoding')
 
 # Initiate a new Genbot session
 genbot.initiate_new_genbot(assistant_id=None, prompt="Your assistant's prompt", instructions="Your assistant's instructions")

@@ -32,11 +32,15 @@ class DatabaseAdmin():
             ip,
             table,
             db_type,
+            client_encoding=None,
             debug=False
             ):
 
         try:
-            self.engine = create_engine(f"{db_type}://{user}:{pwd}@{ip}/{table}", client_encoding='utf8')    
+            if client_encoding:
+                self.engine = create_engine(f"{db_type}://{user}:{pwd}@{ip}/{table}", client_encoding='utf8')    
+            else:
+                self.engine = create_engine(f"{db_type}://{user}:{pwd}@{ip}/{table}")    
             SQLModel.metadata.create_all(self.engine)
             self.session = sessionmaker(autocommit=False, autoflush=False, bind=self.engine)
             if debug: print(f"[Database] - Successfully connected to {db_type}://{user}:{pwd}@{ip}/{table}")
@@ -313,8 +317,8 @@ class Genbot():
     def load_swagger_functions(self, url, swagger_json):
         self.functions = FunctionsBuilder(url, swagger_json)
 
-    def load_database(self, user, pwd, ip, table, db_type):
-        self.database = DatabaseAdmin(user, pwd, ip, table, db_type)
+    def load_database(self, user, pwd, ip, table, db_type, client_encoding=None):
+        self.database = DatabaseAdmin(user, pwd, ip, table, db_type, client_encoding)
         
     def initiate_new_genbot(
         self,
