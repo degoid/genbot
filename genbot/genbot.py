@@ -66,6 +66,11 @@ class DatabaseAdmin():
 
 
 class FunctionsBuilder:
+
+    def __init__(self):
+        self.URL = None
+        self.functions_list = []
+
     def __init__(self, url, swagger_json):
         self.URL = url
         self.load_dynamic_functions_from_swagger(swagger_json)
@@ -310,6 +315,7 @@ class Genbot():
         self.assistant_id = None
         self.thread_id = None
         self.database = None
+        self.functions = FunctionsBuilder()
         self.genbot_name = genbot_name
         self.manager = Manager(model, debug)
         self.debug = debug
