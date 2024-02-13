@@ -36,11 +36,15 @@ from genbot.genbot import Genbot
 # Initialize Genbot with your OpenAI API key and model choice
 genbot = Genbot(genbot_name="MyGenbot", openai_key="your_openai_api_key", model="gpt-3.5-turbo-1106")
 
-# Load Swagger functions and database configuration
+# Load Swagger functions (if needed)
 genbot.load_swagger_functions(url="your_swagger_url", swagger_json=your_swagger_json)
+
+# Load database configuration (table MUST exist)
 genbot.load_database(user="db_user", pwd="db_password", ip="db_ip", table="db_table", db_type="db_type", client_encoding='optional_your_client_encoding')
 
 # Initiate a new Genbot session
+# If assistant_id is None, new assistant will be created in your OpenAI account.
+# Otherwise you will pull the assistant from OpenAI and load new instructions to it.
 genbot.initiate_new_genbot(assistant_id=None, prompt="Your assistant's prompt", instructions="Your assistant's instructions")
 
 # Run Genbot with a user question
