@@ -71,7 +71,8 @@ class FunctionsBuilder:
         self.URL = None
         self.functions_list = []
 
-    def __init__(self, url, swagger_json):
+
+    def set_up(self, url, swagger_json):
         self.URL = url
         self.load_dynamic_functions_from_swagger(swagger_json)
         self.load_openai_functions_structure_from_swagger(swagger_json)
@@ -321,7 +322,7 @@ class Genbot():
         self.debug = debug
       
     def load_swagger_functions(self, url, swagger_json):
-        self.functions = FunctionsBuilder(url, swagger_json)
+        self.functions.set_up(url, swagger_json)
 
     def load_database(self, user, pwd, ip, table, db_type, client_encoding=None):
         self.database = DatabaseAdmin(user, pwd, ip, table, db_type, client_encoding)
