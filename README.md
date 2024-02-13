@@ -16,7 +16,7 @@ Genbot is a Python package that integrates OpenAI's GPT models with a SQL-based 
 To install Genbot, run the following command in your terminal:
 
 ```bash
-pip install genbot
+pip install git+https://github.com/mlangone13/genbot.git
 ```
 
 
@@ -31,7 +31,7 @@ export OPENAI_API_KEY='your_openai_api_key'
 2. **Basic Usage**: Here's a quick example to get started with Genbot:
 
 ```python
-from genbot import Genbot
+from genbot.genbot import Genbot
 
 # Initialize Genbot with your OpenAI API key and model choice
 genbot = Genbot(genbot_name="MyGenbot", openai_key="your_openai_api_key", model="gpt-3.5-turbo-1106")

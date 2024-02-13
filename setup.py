@@ -15,7 +15,12 @@ setup(
                         'setuptools',
                         'faiss-cpu',
                         'openai==1.3.4',
-                        'langchain==0.0.145'
+                        'langchain==0.0.145',
+                        'mysql-connector-python',
+                        'pymysql',
+                        'sqlalchemy-stubs',
+                        'sqlmodel',
+                        'SQLAlchemy'
                         ],
 
     classifiers=[
