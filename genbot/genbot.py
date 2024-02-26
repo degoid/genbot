@@ -377,7 +377,7 @@ class Genbot():
         else:
             print("[Genbot] - Genbot not initiated. Please run 'initiate_new_genbot' to start a new thread")
             return None
-        
+    
     def save_conversation(self, question, answer):
         if self.assistant_id and self.thread_id and self.database:
             self.database.save_conversation(question=question, answer=answer, thread_id=self.thread_id)
