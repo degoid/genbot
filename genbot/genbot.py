@@ -324,7 +324,8 @@ class Genbot():
     def load_swagger_functions(self, url, swagger_json):
         self.functions.set_up(url, swagger_json)
 
-    def load_database(self, user, pwd, ip, table, db_type, client_encoding=None):
+    def load_database(self, user, pwd, ip, table, db_type, autosave_db=False, client_encoding=None):
+        self.autosave_db = autosave_db
         self.database = DatabaseAdmin(user, pwd, ip, table, db_type, client_encoding)
         
     def initiate_new_genbot(
@@ -369,13 +370,20 @@ class Genbot():
             message = self.manager.get_latest_response(self.thread_id)
             answer = message['content']
 
-            if self.database:
+            if self.database and self.autosave_db:
                 self.database.save_conversation(question=question, answer=answer, thread_id=self.thread_id)
 
             return answer
         else:
             print("[Genbot] - Genbot not initiated. Please run 'initiate_new_genbot' to start a new thread")
             return None
+        
+    def save_conversation(self, question, answer):
+        if self.assistant_id and self.thread_id and self.database:
+            self.database.save_conversation(question=question, answer=answer, thread_id=self.thread_id)
+            print("Question and answer saved successfully")
+        else:
+            print("Genbot assistant not loaded, database not loaded or not thread id")
         
     def run_on_gradio(self):
         self.restart_bot()
